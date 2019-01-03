@@ -1,0 +1,8 @@
+spring:
+  thymeleaf:
+    cache: false
+logging:
+  level:
+    com.github.smdj.marusei: debug
+    com.github.smdj.marusei.Launcher: trace
+    com.github.smdj.marusei.controller: trace

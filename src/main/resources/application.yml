@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:
+    prefix: file:./front/templates/
+    cache: true
+logging:
+  level:
+    root: warn

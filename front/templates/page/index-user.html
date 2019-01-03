@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Index Page - User</title>
@@ -15,17 +15,17 @@
 </header>
 
 <ul>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
-    <li><a href="article/detail.html">글목록</a></li>
+    <li><a href="article/detail.html" th:href="@{/articles/1}">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
+    <li th:remove="all"><a href="article/detail.html">글목록</a></li>
 </ul>
 
-<a href="article/create.html">글쓰기</a>
+<a href="article/create.html" th:href="@{/articles/create}">글쓰기</a>
 
 </body>
 </html>
