@@ -1,12 +1,12 @@
 spring:
   datasource:
     hikari:
-      driver-class-name: com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.jdbc.Driver
       idle-timeout: 12000
       connection-test-query: SELECT 1
-    jpa:
-      database: mysql
-      open-in-view: false
+  jpa:
+    database: mysql
+    open-in-view: false
   thymeleaf:
     prefix: file:./front/templates/
     cache: true
