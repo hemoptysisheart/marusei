@@ -53,3 +53,7 @@ gradle-app.setting
 # IntelliJ IDEA
 *.iml
 .idea/
+
+# config
+config/
+!config/sample_*
