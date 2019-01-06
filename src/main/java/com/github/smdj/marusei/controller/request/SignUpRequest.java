@@ -7,7 +7,7 @@ public class SignUpRequest {
     @Email
     @NotNull
     @NotEmpty
-    @Size(max = 255)
+    @Size(max = 128)
     private String email;
 
     @NotEmpty
