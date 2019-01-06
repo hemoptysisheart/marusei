@@ -4,6 +4,7 @@ import com.github.smdj.marusei.domain.Account;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.StringJoiner;
 
 @Entity(name = "Account")
 @Table(name = "account", uniqueConstraints = {@UniqueConstraint(name = "UQ_ACCOUNT_EMAIL", columnNames = "email"),
@@ -22,6 +23,13 @@ public class AccountEntity implements Account {
     private Instant createdAt;
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    public AccountEntity(String email, String nickname, Instant createdAt) {
+        this.email = email;
+        this.nickname = nickname;
+        this.createdAt = createdAt;
+        this.updatedAt = createdAt;
+    }
 
     @Override
     public int getId() {
@@ -60,5 +68,16 @@ public class AccountEntity implements Account {
     @Override
     public int hashCode() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AccountEntity.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("email='" + email + "'")
+                .add("nickname='" + nickname + "'")
+                .add("createdAt=" + createdAt)
+                .add("updatedAt=" + updatedAt)
+                .toString();
     }
 }
