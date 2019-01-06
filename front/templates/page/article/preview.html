@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Article Preview Page</title>
 </head>
 <body>
 <main>
-    <article>
-        <h1>This is Article Preview Page</h1>
-        <div>
-            This is Article Preview This is Article Preview This is Article Preview
-            This is Article Preview This is Article Preview This is Article Preview
-            This is Article Preview This is Article Preview This is Article Preview
-        </div>
-    </article>
+    <form id="create-article">
+        <label for="title">Title</label>
+        <input id="title" name="title" readonly="readonly" value="This is Article Preview Page"/>
+        <label for="body">Body</label>
+        <textarea id="body" name="body" rows="20" cols="50" readonly="readonly">This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview This is Article Preview</textarea>
+    </form>
 </main>
-<a href="detail.html">confirm</a>
-<a href="edit.html">edit</a>
+<button form="create-article" formaction="detail.html" formmethod="post" th:formaction="@{/articles}">confirm</button>
+<button form="create-article" formaction="create.html" formmethod="get" th:formaction="@{/articles/create}">edit</button>
 </body>
 </html>

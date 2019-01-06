@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Article Detail Page</title>
@@ -14,8 +14,9 @@
             This is Article Contents This is Article Contents This is Article Contents
         </div>
     </article>
-    <a href="edit.html">수정</a>
-    <a href="index-user.html">삭제</a>
+    <a href="edit.html" th:href="@{/articles/1/edit}">수정</a>
+    <form id="delete-article" action="index-user.html" method="post" style="display: none" th:method="delete"></form>
+    <button form="delete-article" >삭제</button>
     <a href="javascript:history.go(-1)">뒤로가기</a>
 </main>
 </body>
