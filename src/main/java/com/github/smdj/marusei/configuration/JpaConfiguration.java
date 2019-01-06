@@ -1,5 +1,6 @@
 package com.github.smdj.marusei.configuration;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,6 +20,7 @@ import javax.sql.DataSource;
 @EnableJpaRepositories(basePackages = "com.github.smdj.marusei.jpa.repository")
 public class JpaConfiguration {
     @Bean
+    @ConfigurationProperties("spring.datasource.hikari")
     public DataSource dataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -35,7 +37,7 @@ public class JpaConfiguration {
     }
 
     @Bean
-    public PlatformTransactionManager platformTransactionManager() {
+    public PlatformTransactionManager transactionManager() {
         return new JpaTransactionManager(entityManagerFactory().getObject());
     }
 
