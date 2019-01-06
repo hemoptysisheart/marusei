@@ -2,14 +2,25 @@ package com.github.smdj.marusei.jpa.entity;
 
 import com.github.smdj.marusei.domain.Account;
 
+import javax.persistence.*;
 import java.time.Instant;
 
+@Entity(name = "Account")
+@Table(name = "account", uniqueConstraints = {@UniqueConstraint(name = "UQ_ACCOUNT_EMAIL", columnNames = "email"),
+        @UniqueConstraint(name = "UQ_ACCOUNT_NICKNAME", columnNames = "nickname")})
 public class AccountEntity implements Account {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true, nullable = false, insertable = false, updatable = false)
     private int id;
+    @Column(name = "email", unique = true, nullable = false, updatable = false)
     private String email;
+    @Column(name = "nickname", unique = true, nullable = false, updatable = false)
     private String nickname;
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
     @Override
