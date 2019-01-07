@@ -36,7 +36,6 @@ public class AccountEntityTest {
     }
 
     @Test
-
     public void test_new_with_nulls() {
         assertThatThrownBy(() -> new AccountEntity(null, null, null))
                 .isInstanceOf(IllegalArgumentException.class);
