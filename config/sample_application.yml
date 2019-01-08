@@ -1,0 +1,17 @@
+spring:
+  thymeleaf:
+    cache: false
+  datasource:
+    hikari:
+      # ≤ MySQL 5.7
+      jdbc-url: jdbc:mysql://localhost/marusei?connectionCollation=utf8mb4_bin
+      # MySQL 8 ≤
+      #jdbc-url: jdbc:mysql://localhost/marusei?connectionCollation=utf8mb4_bin&allowPublicKeyRetrieval=true
+      username: root
+      password: '1234'
+      maximum-pool-size: 1
+logging:
+  level:
+    com.github.smdj.marusei: debug
+    com.github.smdj.marusei.Launcher: trace
+    com.github.smdj.marusei.controller: trace
