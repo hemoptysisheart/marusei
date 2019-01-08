@@ -2,6 +2,10 @@ package com.github.smdj.marusei.service;
 
 import com.github.smdj.marusei.Launcher;
 import com.github.smdj.marusei.domain.Account;
+import com.github.smdj.marusei.domain.Credential;
+import com.github.smdj.marusei.jpa.entity.AccountEntity;
+import com.github.smdj.marusei.jpa.entity.CredentialEntity;
+import com.github.smdj.marusei.jpa.repository.CredentialRepository;
 import com.github.smdj.marusei.service.params.CreateAccountParams;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Instant;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,10 +31,16 @@ public class AccountServiceTest {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private CredentialRepository credentialRepository;
+
     @Before
     public void setUp() throws Exception {
         log.debug("log");
         assertThat(accountService)
+                .isNotNull();
+
+        assertThat(credentialRepository)
                 .isNotNull();
     }
 
@@ -62,5 +73,35 @@ public class AccountServiceTest {
                 .isAfterOrEqualTo(before)
                 .isEqualTo(account.getUpdatedAt());
 
+        List<CredentialEntity> list = credentialRepository.findAllByAccount((AccountEntity) account);
+
+        assertThat(list)
+                .hasSize(2);
+
+        for (CredentialEntity credentialEntity : list) {
+            assertThat(credentialEntity)
+                    .isNotNull()
+                    .extracting(Credential::getAccount, Credential::getCreatedAt, Credential::getUpdatedAt)
+                    .containsSequence(account, account.getCreatedAt(), account.getUpdatedAt());
+
+            assertThat(credentialEntity.getId())
+                    .isGreaterThan(0L);
+
+            assertThat(credentialEntity.getPublicKey())
+                    .isIn(email, nickname);
+
+            assertThat(credentialEntity.getSecreteHash())
+                    .isNotEmpty()
+                    .isNotEqualTo(password);
+        }
+
+        for (String publicKey : new String[]{email, nickname}) {
+            CredentialEntity credentialEntity = credentialRepository.findOneByPublicKey(publicKey);
+
+            assertThat(credentialEntity)
+                    .isNotNull()
+                    .extracting(Credential::getAccount, Credential::getPublicKey)
+                    .containsSequence(account, publicKey);
+        }
     }
 }
