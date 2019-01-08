@@ -32,6 +32,13 @@ public class CredentialEntity implements Credential {
     public CredentialEntity() {
     }
 
+    public CredentialEntity(Account account, String publicKey, String secreteHash, Instant createdAt) {
+        this.account = account;
+        this.publicKey = publicKey;
+        this.secreteHash = secreteHash;
+        this.createdAt = createdAt;
+    }
+
     @Override
     public long getId() {
         return id;
