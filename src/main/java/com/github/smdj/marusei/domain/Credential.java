@@ -9,7 +9,7 @@ public interface Credential {
 
     String getPublicKey();
 
-    String getScreteHash();
+    String getSecreteHash();
 
     Instant getCreatedAt();
 

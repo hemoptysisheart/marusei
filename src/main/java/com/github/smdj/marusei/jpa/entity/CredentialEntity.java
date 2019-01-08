@@ -22,8 +22,8 @@ public class CredentialEntity implements Credential {
     private Account account;
     @Column(name = "public_key", unique = true, nullable = false, updatable = false)
     private String publicKey;
-    @Column(name = "screte_hash", nullable = false, updatable = false)
-    private String screteHash;
+    @Column(name = "secrete_hash", nullable = false, updatable = false)
+    private String secreteHash;
     @Column(name = "create_at", nullable = false, updatable = false)
     private Instant createdAt;
     @Column(name = "updated_at", nullable = false)
@@ -48,8 +48,8 @@ public class CredentialEntity implements Credential {
     }
 
     @Override
-    public String getScreteHash() {
-        return screteHash;
+    public String getSecreteHash() {
+        return secreteHash;
     }
 
     @Override
