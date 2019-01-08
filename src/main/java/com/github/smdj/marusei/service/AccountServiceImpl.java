@@ -32,10 +32,10 @@ class AccountServiceImpl implements AccountService {
 
         Instant creatTime = Instant.now();
         Account account = new AccountEntity(createAccountParams.getEmail(), createAccountParams.getNickname(), creatTime);
-        account = accountRepository.save((AccountEntity) account);
+        account = accountRepository.saveAndFlush((AccountEntity) account);
 
         Credential credential = new CredentialEntity(account, account.getEmail(), createAccountParams.getPassword(), creatTime);
-        credentialRepository.save((CredentialEntity) credential);
+        credentialRepository.saveAndFlush((CredentialEntity) credential);
 
         return null;
     }
