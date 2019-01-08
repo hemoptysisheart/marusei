@@ -49,6 +49,27 @@ public class CredentialEntity implements Credential {
         this.updatedAt = createdAt;
     }
 
+    public CredentialEntity(Account account, String publicKey, String secreteHash, Instant createdAt) {
+        if (account == null) {
+            throw new IllegalArgumentException("account is null");
+        }
+        if (publicKey == null) {
+            throw new IllegalArgumentException("publicKey is null");
+        }
+        if (secreteHash == null) {
+            throw new IllegalArgumentException("secreteHash is null");
+        }
+        if (createdAt == null) {
+            throw new IllegalArgumentException("createdAt is null");
+        }
+
+        this.account = account;
+        this.publicKey = publicKey;
+        this.secreteHash = secreteHash;
+        this.createdAt = createdAt;
+        this.updatedAt = createdAt;
+    }
+
     @Override
     public long getId() {
         return id;
