@@ -21,6 +21,7 @@ import java.time.Instant;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Launcher.class)
@@ -103,5 +104,16 @@ public class AccountServiceTest {
                     .extracting(Credential::getAccount, Credential::getPublicKey)
                     .containsSequence(account, publicKey);
         }
+    }
+
+    @Test
+    public void test_with_nulls() {
+
+        // given
+        CreateAccountParams createAccountParams = new CreateAccountParams(null, null, null);
+
+        // then
+        assertThatThrownBy(() -> accountService.create(createAccountParams))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
