@@ -22,9 +22,9 @@ public class CredentialEntity implements Credential {
     private Account account;
     @Column(name = "public_key", unique = true, nullable = false, updatable = false)
     private String publicKey;
-    @Column(name = "secrete_hash", nullable = false, updatable = false)
-    private String secreteHash;
-    @Column(name = "create_at", nullable = false, updatable = false)
+    @Column(name = "secret_hash", nullable = false, updatable = false)
+    private String secretHash;
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
@@ -32,19 +32,19 @@ public class CredentialEntity implements Credential {
     private CredentialEntity() {
     }
 
-    public CredentialEntity(Account account, String publicKey, String secreteHash, Instant createdAt) {
+    public CredentialEntity(Account account, String publicKey, String secretHash, Instant createdAt) {
         if (account == null) {
             throw new IllegalArgumentException("account is null");
         }
         if (publicKey == null) {
             throw new IllegalArgumentException("publicKey is null");
         }
-        if (secreteHash == null) {
+        if (secretHash == null) {
             throw new IllegalArgumentException("secretHash is null");
         }
         this.account = account;
         this.publicKey = publicKey;
-        this.secreteHash = secreteHash;
+        this.secretHash = secretHash;
         this.createdAt = createdAt;
         this.updatedAt = createdAt;
     }
@@ -65,8 +65,8 @@ public class CredentialEntity implements Credential {
     }
 
     @Override
-    public String getSecreteHash() {
-        return secreteHash;
+    public String getSecretHash() {
+        return secretHash;
     }
 
     @Override

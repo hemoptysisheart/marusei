@@ -91,7 +91,7 @@ public class AccountServiceTest {
             assertThat(credentialEntity.getPublicKey())
                     .isIn(email, nickname);
 
-            assertThat(credentialEntity.getSecreteHash())
+            assertThat(credentialEntity.getSecretHash())
                     .isNotEmpty()
                     .isNotEqualTo(password);
         }
