@@ -29,14 +29,24 @@ public class CredentialEntity implements Credential {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
-    public CredentialEntity() {
+    private CredentialEntity() {
     }
 
     public CredentialEntity(Account account, String publicKey, String secreteHash, Instant createdAt) {
+        if (account == null) {
+            throw new IllegalArgumentException("account is null");
+        }
+        if (publicKey == null) {
+            throw new IllegalArgumentException("publicKey is null");
+        }
+        if (secreteHash == null) {
+            throw new IllegalArgumentException("secretHash is null");
+        }
         this.account = account;
         this.publicKey = publicKey;
         this.secreteHash = secreteHash;
         this.createdAt = createdAt;
+        this.updatedAt = createdAt;
     }
 
     @Override
