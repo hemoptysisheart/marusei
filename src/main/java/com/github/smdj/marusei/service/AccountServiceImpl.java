@@ -37,6 +37,9 @@ class AccountServiceImpl implements AccountService {
         Credential credential = new CredentialEntity(account, account.getEmail(), createAccountParams.getPassword(), time);
         credentialRepository.saveAndFlush((CredentialEntity) credential);
 
+        Credential credential1 = new CredentialEntity(account, account.getNickname(), createAccountParams.getPassword(), time);
+        credentialRepository.saveAndFlush((CredentialEntity) credential);
+
         return account;
     }
 }
