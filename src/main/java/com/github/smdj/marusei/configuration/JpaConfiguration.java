@@ -31,7 +31,7 @@ public class JpaConfiguration {
         hibernateJpaVendorAdapter.setDatabase(Database.MYSQL);
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource());
-        localContainerEntityManagerFactoryBean.setPackagesToScan("com.github.smdj.marusei.jpa.entity");
+        localContainerEntityManagerFactoryBean.setPackagesToScan("com.github.smdj.marusei.jpa");
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(hibernateJpaVendorAdapter);
         return localContainerEntityManagerFactoryBean;
     }

@@ -42,6 +42,10 @@ public class CredentialEntity implements Credential {
         if (secretHash == null) {
             throw new IllegalArgumentException("secretHash is null");
         }
+        if (createdAt == null) {
+            throw new IllegalArgumentException("createdAt is null");
+        }
+
         this.account = account;
         this.publicKey = publicKey;
         this.secretHash = secretHash;

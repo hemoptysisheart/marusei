@@ -7,6 +7,7 @@ public class CreateAccountParams {
     private String nickname;
     private String password;
 
+
     public CreateAccountParams() {
     }
 
